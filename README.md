@@ -1,14 +1,10 @@
 # arcade-go
 🍄 arcade-go - plataformer 2D usando raylib
 
-# Go Gopher Go! - Ideia de Plataformer 2D
-
 ## 🎮 Ideia geral
 Um plataformer estrelando o Gopher 🐹, mascote da linguagem Go!
 
 > O Gopher precisa coletar pacotes perdidos da linguagem Go que caíram em servidores bugados pelo mundo. Cada fase é um servidor, cheio de bugs, obstáculos e estruturas bizarras de código corrompido.
-
----
 
 ## 🔧 Mecânicas principais
 
@@ -33,14 +29,10 @@ Um plataformer estrelando o Gopher 🐹, mascote da linguagem Go!
 - **Go Mod**: Atualiza o Gopher (habilita dash ou pulo duplo)
 - **Static Check**: Torna o Gopher invencível por 5 segundos
 
----
-
 ## 🧠 Desafios criativos
 - Plataformas móveis (tipo *pipelines*)
 - Portais que lembram canais Go (`chan`) — entra num portal, sai no outro
 - Puzzles com semáforos (waitgroups) pra abrir portas
-
----
 
 ## 🌎 Estrutura de fases
 
@@ -49,23 +41,17 @@ Um plataformer estrelando o Gopher 🐹, mascote da linguagem Go!
 2. **"prod-server-1"** – Inimigos e plataformas móveis
 3. **"CI/CD-pipeline"** – Tudo em movimento, corrida contra o tempo
 
----
-
 ## 📦 Recursos gráficos e sonoros
 - Gopher oficial: https://github.com/golang-samples/gopher-vector
 - Sons de “compilação” para pegar itens
 - Música estilo terminal retro / 8-bit
 - Paleta de cores baseada em temas de editores (Monokai, Dracula, etc)
 
----
-
 ## 🌟 Estilo visual
 - Visual flat 2D, estilo pixel ou vetorial
 - Códigos como plano de fundo (scrolling com `DrawText`)
 - Nuvens que são “blocos de código”
 - Inimigos com carinhas tipo emoji de erro 🧟‍♂️
-
----
 
 ## ⚙️ Extensões futuras
 - Sistema de conquistas (ex: "Você venceu um *race condition*!")
