@@ -9,10 +9,11 @@ import (
 func main() {
 	// Inicialização da janela
 	window := config.LoadWindowConfig()
-	rl.InitWindow(window.ScreenWidth, window.ScreenHeight, "A namorada do Daniel é trans 🏳️‍⚧️")
+	rl.InitWindow(window.ScreenWidth, window.ScreenHeight, "Gopher, Go!")
 	rl.SetTargetFPS(60)
-	config.LoadWindowIcon("../images/icons/gopher.png")
+	config.LoadWindowIcon("gopher", "png")
 
+	// Inicialização do jogo
 	player := logic.NewPlayer()
 	platforms := []logic.Platform{
 		logic.NewPlatform(0, 400, 800, 50),
