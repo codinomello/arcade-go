@@ -1,27 +1,35 @@
 package main
 
-import rl "github.com/gen2brain/raylib-go/raylib"
-
-const (
-	ScreenWidth  = 800
-	ScreenHeight = 600
+import (
+	"github.com/codinomello/arcade-go/config"
+	"github.com/codinomello/arcade-go/logic"
+	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 func main() {
-	rl.InitWindow(ScreenWidth, ScreenHeight, "Plataformer 2D")
-	icon := rl.LoadImage("../images/icons/gopher-icon.png")
-	defer rl.UnloadImage(icon)
-	rl.SetWindowIcon(*icon)
-
+	// Inicialização da janela
+	window := config.LoadWindowConfig()
+	rl.InitWindow(window.ScreenWidth, window.ScreenHeight, "A namorada do Daniel é trans 🏳️‍⚧️")
 	rl.SetTargetFPS(60)
+	config.LoadWindowIcon("../images/icons/gopher.png")
+
+	player := logic.NewPlayer()
+	platforms := []logic.Platform{
+		logic.NewPlatform(0, 400, 800, 50),
+		logic.NewPlatform(300, 300, 200, 20),
+	}
 
 	for !rl.WindowShouldClose() {
-		// Atualização
-		// Desenho
+		// Atualização da lógica do jogo
+		player.Update(platforms)
+
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("Olá, Plataforma!", 10, 10, 20, rl.Black)
+		player.Draw()
+		for _, p := range platforms {
+			p.Draw()
+		}
 
 		rl.EndDrawing()
 	}
