@@ -1,5 +1,5 @@
-# arcade-go
-🍄 arcade-go - plataformer 2D usando raylib
+# gopher-go
+🍄 gopher-go - plataformer 2D usando raylib
 
 ## 🎮 Ideia geral
 Um plataformer estrelando o Gopher 🐹, mascote da linguagem Go!
