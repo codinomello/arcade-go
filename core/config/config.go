@@ -7,8 +7,8 @@ import (
 )
 
 type Config struct {
-	ScreenWidth      int32
-	ScreenHeight     int32
+	ScreenWidth      float32
+	ScreenHeight     float32
 	Title            string
 	TargetFPS        int32
 	Fullscreen       bool

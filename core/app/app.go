@@ -4,44 +4,50 @@ import (
 	"fmt"
 
 	"github.com/codinomello/arcade-go/core/config"
-	"github.com/codinomello/arcade-go/core/functions"
-	"github.com/codinomello/arcade-go/core/logic"
-	"github.com/codinomello/arcade-go/core/models"
+	"github.com/codinomello/arcade-go/core/entities"
+	"github.com/codinomello/arcade-go/core/objects"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 type Game struct {
-	Name string
+	Name  string
+	Level string
+	Score int
 	// TODO: outros componentes
 }
 
-// NewGame cria uma nova instância do jogo
+// Cria uma nova instância do jogo
 func NewGame() *Game {
 	// Inicialização da janela
 	window := config.LoadWindowConfig()
-	rl.InitWindow(window.ScreenWidth, window.ScreenHeight, window.Title)
+	rl.InitWindow(int32(window.ScreenWidth), int32(window.ScreenHeight), window.Title)
 	rl.SetTargetFPS(window.TargetFPS)
+	rl.SetExitKey(rl.KeyEscape)
+
+	// Carregar o ícone da janela
 	config.LoadWindowIcon(window.Icon, window.IconFormat)
 
 	return &Game{
-		Name: window.Title,
+		Name:  window.Title,
+		Level: "level-0",
+		Score: 0,
 	}
 }
 
-// Run inicia o loop principal do jogo
+// Inicia o loop principal do jogo
 func (game *Game) Run() {
 	// Inicialização do jogo
-	player := logic.NewPlayer()
-	platforms := []models.Platform{
-		logic.NewPlatform(0, 400, 800, 50),
-		logic.NewPlatform(300, 300, 200, 20),
+	player := entities.NewPlayer()
+	platforms := []objects.Platform{
+		objects.NewPlatform(0, 400, 800, 50),
+		objects.NewPlatform(300, 300, 200, 20),
 	}
 
 	for !rl.WindowShouldClose() {
-		// dt := rl.GetFrameTime()
+		dt := rl.GetFrameTime()
 
-		// Atualização da lógica do jogo
-		functions.UpdateGame(&player, platforms)
+		// Atualização do jogador
+		player.Update(dt, platforms)
 
 		// Desenho
 		rl.BeginDrawing()
@@ -50,11 +56,11 @@ func (game *Game) Run() {
 		rl.ClearBackground(rl.RayWhite)
 
 		// Desenhar player
-		logic.DrawPlayer(player)
+		player.Draw()
 
 		// Desenhar plataformas
 		for _, platform := range platforms {
-			logic.DrawPlatform(platform)
+			platform.Draw()
 		}
 
 		// Informações de debug
@@ -67,7 +73,7 @@ func (game *Game) Run() {
 	}
 }
 
-// Shutdown finaliza o jogo e libera os recursos utilizados
+// Finaliza o jogo e libera os recursos utilizados
 func (game *Game) Shutdown() {
 	// Limpeza de recursos
 	rl.CloseAudioDevice()
